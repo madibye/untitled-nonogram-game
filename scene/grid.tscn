@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd28m4aahpnbw"]
+
+[ext_resource type="Script" path="res://script/board/grid.gd" id="1_q18yc"]
+
+[node name="Grid" type="GridContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+script = ExtResource("1_q18yc")
