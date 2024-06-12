@@ -15,3 +15,5 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 script = ExtResource("1_q18yc")
+rows = 10
+cols = 10
