@@ -4,28 +4,31 @@ extends GridContainer
 const SquareState = Square.SquareState
 
 @onready var squares: Array[Square] = []
-@export var rows: int
-@export var cols: int
+@export var sq_rows: int
+@export var sq_cols: int
 @onready var row_numbers = []
 @onready var col_numbers = []
+@onready var rows: int
 
 func _ready():
 	populate_squares()
+	await get_tree().process_frame
+	pivot_offset = get_rect().size / 2
 
-func populate_squares(r = rows, c = cols):
+func populate_squares(r = sq_rows, c = sq_cols):
 	set_grid_size(r, c)
-	while squares.size() < (rows*cols):
+	while squares.size() < (sq_rows*sq_cols):
 		squares.append(make_square())
 	
-	row_numbers = range(rows).map(generate_row_numbers.bind('y'))
-	col_numbers = range(cols).map(generate_row_numbers)
+	row_numbers = range(sq_rows).map(generate_row_numbers.bind('y'))
+	col_numbers = range(sq_cols).map(generate_row_numbers)
 	var max_rn = row_numbers.map(func(rn): return rn.size()).max()
 	var max_cn = col_numbers.map(func(rn): return rn.size()).max()
-	var adjusted_rows = rows + max_cn
+	rows = sq_rows + max_cn
 	set_columns(columns + max_rn)
 	
-	for i in range(adjusted_rows * columns):
-		var pos = Vector2((i % columns) - max_rn, floor(i / (columns)) - max_cn)
+	for i in range(rows * columns):
+		var pos = Vector2((i % columns) - max_rn, floor(float(i) / float(columns)) - max_cn)
 		var sq = preload("res://scene/square.tscn").instantiate() as Square
 		sq.set_sq_state(SquareState.BLANK)
 		sq.set_pos(pos.x, pos.y)
@@ -39,12 +42,12 @@ func populate_squares(r = rows, c = cols):
 	
 func make_square() -> Square:
 	var sq = preload("res://scene/square.tscn").instantiate() as Square
-	sq.set_pos(squares.size() % cols, floor(squares.size() / cols))
+	sq.set_pos(squares.size() % sq_cols, floor(float(squares.size()) / float(sq_cols)))
 	return sq
 
 func set_grid_size(r, c) -> void:
-	rows = r
-	cols = c
+	sq_rows = r
+	sq_cols = c
 	set_columns(c)
 	
 func generate_row_numbers(row, pos_identifier: String = 'x') -> Array:
@@ -89,3 +92,4 @@ func flatten_array(list) -> Array:
 		else:
 			ret_list.append(i)
 	return ret_list
+
