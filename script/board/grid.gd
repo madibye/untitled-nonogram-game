@@ -23,10 +23,6 @@ func populate_squares(r = rows, c = cols):
 	var max_cn = col_numbers.map(func(rn): return rn.size()).max()
 	var adjusted_rows = rows + max_cn
 	set_columns(columns + max_rn)
-	print(max_rn)
-	print(max_cn)
-	print(adjusted_rows)
-	print(columns)
 	
 	for i in range(adjusted_rows * columns):
 		var pos = Vector2((i % columns) - max_rn, floor(i / (columns)) - max_cn)
@@ -44,7 +40,6 @@ func populate_squares(r = rows, c = cols):
 func make_square() -> Square:
 	var sq = preload("res://scene/square.tscn").instantiate() as Square
 	sq.set_pos(squares.size() % cols, floor(squares.size() / cols))
-	print(squares.size() % cols, floor(squares.size() / cols))
 	return sq
 
 func set_grid_size(r, c) -> void:
