@@ -6,3 +6,4 @@
 resource_local_to_scene = true
 atlas = ExtResource("1_hb5ge")
 region = Rect2(0, 0, 16, 16)
+filter_clip = true
