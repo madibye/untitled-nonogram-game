@@ -1,9 +1,11 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bb70mnw4plyfu"]
+[gd_resource type="AtlasTexture" script_class="SquareTexture" load_steps=3 format=3 uid="uid://bb70mnw4plyfu"]
 
 [ext_resource type="Texture2D" uid="uid://hmbi5kx0xgrp" path="res://tex/squares.png" id="1_hb5ge"]
+[ext_resource type="Script" path="res://script/visuals/square_texture.gd" id="2_kqmlt"]
 
 [resource]
 resource_local_to_scene = true
 atlas = ExtResource("1_hb5ge")
 region = Rect2(0, 0, 16, 16)
 filter_clip = true
+script = ExtResource("2_kqmlt")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://1330symtgqbg"]
+
+[ext_resource type="Texture2D" uid="uid://bb70mnw4plyfu" path="res://scene/squares.tres" id="1_13gw3"]
+[ext_resource type="Script" path="res://script/board/vo_square.gd" id="2_0q3b8"]
+
+[node name="VOSquare" type="TextureRect"]
+texture = ExtResource("1_13gw3")
+script = ExtResource("2_0q3b8")
+
+[node name="NumLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -7.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(8, 7)
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+bbcode_enabled = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
