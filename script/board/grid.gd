@@ -14,6 +14,11 @@ const RD = Enum.RowDirection
 
 func _ready():
 	pivot_offset = get_rect().size / 2
+	Signals.finished.connect(_on_finish)
+	
+func _on_finish() -> void:
+	get_tree().create_tween().tween_property(self, "modulate", Color("ffffff6b"), 0.6) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	
 func populate_squares(r, c):
 	set_grid_size(r, c)

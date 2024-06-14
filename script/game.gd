@@ -5,7 +5,7 @@ extends Control
 var current_scene
 
 func _ready():
-	change_scene(Resources.title_scene.instantiate())
+	change_scene(TitleScreen.new_title_screen())
 	
 func change_scene(scene):
 	if current_scene: remove_child(current_scene)

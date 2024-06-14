@@ -6,6 +6,8 @@ extends Control
 @onready var row_sb: SpinBox = $RowSpinBox
 @onready var col_sb: SpinBox = $ColSpinBox
 
+static func new_title_screen() -> TitleScreen:
+	return Resources.title_scene.instantiate() as TitleScreen
 
 func _ready():
 	var tween = get_tree().create_tween()
