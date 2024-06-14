@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="PicrossGD"
+config/name="untitled-nonogram-game"
+config/description="a nonogram solver i'm making in godot"
 run/main_scene="res://scene/board.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
