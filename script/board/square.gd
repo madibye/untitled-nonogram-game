@@ -3,8 +3,7 @@ extends TextureButton
 
 const SS = Enum.SquareState
 
-var x_pos = 0
-var y_pos = 0
+var pos: Vector2
 
 var is_filled = bool(randi() % 2)
 @onready var revealed = false
@@ -25,6 +24,7 @@ func _on_gui_input(event: InputEvent):
 		
 func reveal():
 	revealed = true
+	Signals.sq_revealed.emit(self)
 	if not is_filled:
 		Signals.damage_taken.emit(1)
 		return set_sq_state(SS.REVEALED_X)
@@ -39,9 +39,8 @@ func toggle_mark(state):
 func set_sq_state(state: SS):
 	sq_state = state
 	texture_normal.update_texture_region(sq_state)
-	
-func set_pos(x, y):
-	x_pos = x
-	y_pos = y
 
-	
+static func new_square(pos: Vector2) -> Square:
+	var sq = Resources.sq_scene.instantiate() as Square
+	sq.pos = pos
+	return sq
