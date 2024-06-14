@@ -1,0 +1,144 @@
+[gd_scene load_steps=2 format=3 uid="uid://oo1c1ancpxgp"]
+
+[ext_resource type="Script" path="res://script/title/title.gd" id="1_vu8a0"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vu8a0")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -251.0
+offset_top = -300.0
+offset_right = -167.0
+offset_bottom = -244.0
+grow_horizontal = 2
+scale = Vector2(6, 6)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -7
+bbcode_enabled = true
+text = "[center]untitled nonogram game[/center]"
+
+[node name="SplashText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58
+anchor_top = 0.275
+anchor_right = 0.58
+anchor_bottom = 0.275
+offset_left = 231.0
+offset_top = -257.0
+offset_right = 401.0
+offset_bottom = -209.0
+grow_horizontal = 2
+rotation = -0.270526
+scale = Vector2(1.635, 1.635)
+pivot_offset = Vector2(85, 24)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]now with funny splash screen text![/center]"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.5
+offset_top = 208.62
+offset_right = -21.5
+offset_bottom = 239.62
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.75, 2.75)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "start!"
+
+[node name="RowsLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -232.5
+offset_top = 135.385
+offset_right = -176.5
+offset_bottom = 161.385
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.32, 2.32)
+pivot_offset = Vector2(28, 13)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -7
+bbcode_enabled = true
+text = "[center]rows[/center]"
+
+[node name="RowSpinBox" type="SpinBox" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.5
+offset_top = 127.415
+offset_right = -44.4375
+offset_bottom = 158.415
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.39, 1.39)
+min_value = 5.0
+max_value = 50.0
+value = 10.0
+
+[node name="ColsLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 58.5
+offset_top = 135.385
+offset_right = 138.5
+offset_bottom = 161.385
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.085, 2.085)
+pivot_offset = Vector2(38, 13)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -7
+bbcode_enabled = true
+text = "[center]columns[/center]"
+
+[node name="ColSpinBox" type="SpinBox" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 182.5
+offset_top = 127.415
+offset_right = 265.563
+offset_bottom = 158.415
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.39, 1.39)
+min_value = 5.0
+max_value = 50.0
+value = 10.0
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

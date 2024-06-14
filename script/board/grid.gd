@@ -13,11 +13,9 @@ const RD = Enum.RowDirection
 @onready var rows: int
 
 func _ready():
-	populate_squares()
-	await get_tree().process_frame
 	pivot_offset = get_rect().size / 2
-
-func populate_squares(r = sq_rows, c = sq_cols):
+	
+func populate_squares(r, c):
 	set_grid_size(r, c)
 	while squares.size() < (sq_rows*sq_cols):
 		squares.append(make_square(squares.size() % sq_cols, floor(float(squares.size()) / float(sq_cols))))
@@ -101,4 +99,8 @@ func flatten_array(list) -> Array:
 		else:
 			ret_list.append(i)
 	return ret_list
-
+	
+static func new_grid(rows: int, columns: int):
+	var grid: Grid = Resources.grid_scene.instantiate()
+	grid.populate_squares(rows, columns)
+	return grid
