@@ -10,16 +10,26 @@ const RD = Enum.RowDirection
 @onready var squares: Array[Square] = []
 @onready var row_numbers = []
 @onready var col_numbers = []
+@onready var max_rn: int
+@onready var max_cn: int
 @onready var rows: int
 @onready var board: Board
 
 var sq_filled: int = 0
 var curr_sq_filled: int = 0
+	
+static func new_grid(board: Board, rows: int, columns: int):
+	var grid: Grid = Resources.grid_scene.instantiate()
+	board.add_child(grid)
+	grid.board = board
+	grid.populate_squares(rows, columns)
+	return grid
 
 func _ready():
-	pivot_offset = get_rect().size / 2
 	Signals.finished.connect(_on_finish)
 	Signals.sq_revealed.connect(_on_sq_revealed)
+	await get_tree().process_frame
+	pivot_offset = get_rect().size / 2
 	
 func _on_finish() -> void:
 	get_tree().create_tween().tween_property(self, "modulate", Color("ffffff6b"), 0.6) \
@@ -39,10 +49,8 @@ func populate_squares(r, c):
 	
 	row_numbers = range(sq_rows).map(generate_row_numbers.bind(RD.ROW))
 	col_numbers = range(sq_cols).map(generate_row_numbers.bind(RD.COLUMN))
-	var max_rn = row_numbers.map(func(rn): return rn.size()).max()
-	var max_cn = col_numbers.map(func(rn): return rn.size()).max()
-	print(max_rn)
-	print(max_cn)
+	max_rn = row_numbers.map(func(rn): return rn.size()).max()
+	max_cn = col_numbers.map(func(rn): return rn.size()).max()
 	rows = sq_rows + max_cn
 	set_columns(columns + max_rn)
 	
@@ -101,9 +109,3 @@ func flatten_array(list) -> Array:
 		else:
 			ret_list.append(i)
 	return ret_list
-	
-static func new_grid(board: Board, rows: int, columns: int):
-	var grid: Grid = Resources.grid_scene.instantiate()
-	grid.board = board
-	grid.populate_squares(rows, columns)
-	return grid

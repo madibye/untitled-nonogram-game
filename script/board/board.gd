@@ -5,11 +5,17 @@ var prev_size: Vector2
 @export var rows: int
 @export var columns: int
 @onready var grid: Grid
-@onready var health_bar: HealthBar = $HealthBar
+@onready var health_bar: HealthBar
+
+static func new_board(rows: int, columns: int) -> Board:
+	var board: Board = Resources.board_scene.instantiate()
+	board.rows = rows
+	board.columns = columns
+	return board
 
 func _ready():
 	grid = Grid.new_grid(self, rows, columns)
-	add_child(grid)
+	health_bar = HealthBar.new_health_bar(self, 5)
 	Signals.size_changed.connect(_on_size_changed)
 	Signals.damage_taken.connect(_on_damage_taken)
 	
@@ -22,6 +28,7 @@ func _process(_delta):
 func _on_size_changed(new_size: Vector2):
 	var ratio = new_size / grid.get_rect().size
 	grid.scale = grid.scale * Vector2([ratio.x, ratio.y].min(), [ratio.x, ratio.y].min())
+	health_bar.set_global_position(grid.get_child(grid.columns * (grid.max_cn - 1) + (grid.max_rn - 2)).global_position)
 	
 func _on_damage_taken(amt: int):
 	health_bar.update_hp(health_bar.hp - amt)
@@ -30,9 +37,3 @@ func _on_damage_taken(amt: int):
 func finish(text):
 	Signals.finished.emit()
 	FinishScreen.new_finish_screen(self, text)
-
-static func new_board(rows: int, columns: int) -> Board:
-	var board: Board = Resources.board_scene.instantiate()
-	board.rows = rows
-	board.columns = columns
-	return board

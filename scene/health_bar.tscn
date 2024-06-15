@@ -25,26 +25,38 @@ region = Rect2(5, 0, 1, 16)
 
 [node name="HealthBar" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -575.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_rpicm")
 
 [node name="HealthBarLeftEdge" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(2, 8.00001)
 texture = SubResource("AtlasTexture_abj5n")
 
 [node name="HealthBarRightEdge" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(57, 8.00001)
 rotation = -3.14159
 texture = SubResource("AtlasTexture_au5p3")
 
 [node name="HealthBarInner" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(29.5, 8.00001)
 scale = Vector2(51, 1)
 texture = SubResource("AtlasTexture_0bi11")
 
 [node name="HealthBarHPValue" type="Sprite2D" parent="."]
-z_index = -1
+z_index = 1
 position = Vector2(2, 1.19209e-07)
 scale = Vector2(55, 1)
 texture = SubResource("AtlasTexture_wmrha")

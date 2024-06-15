@@ -10,6 +10,11 @@ var is_filled = bool(randi() % 2)
 @onready var sq_state = SS.NORMAL
 var clickable = true
 
+static func new_square(pos: Vector2) -> Square:
+	var sq = Resources.sq_scene.instantiate() as Square
+	sq.pos = pos
+	return sq
+
 func _init():
 	texture_normal = Resources.sq_tex.duplicate() as SquareTexture
 	
@@ -39,8 +44,3 @@ func toggle_mark(state):
 func set_sq_state(state: SS):
 	sq_state = state
 	texture_normal.update_texture_region(sq_state)
-
-static func new_square(pos: Vector2) -> Square:
-	var sq = Resources.sq_scene.instantiate() as Square
-	sq.pos = pos
-	return sq

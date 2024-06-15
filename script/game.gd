@@ -9,5 +9,9 @@ func _ready():
 	
 func change_scene(scene):
 	if current_scene: remove_child(current_scene)
+	
+	for tween in get_tree().get_processed_tweens():
+		tween.kill()
+	
 	current_scene = scene
 	add_child(current_scene)
