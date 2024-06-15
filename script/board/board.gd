@@ -4,11 +4,14 @@ extends Control
 var prev_size: Vector2
 @export var rows: int
 @export var columns: int
+@onready var game: Game
 @onready var grid: Grid
 @onready var health_bar: HealthBar
 
-static func new_board(rows: int, columns: int) -> Board:
+static func new_board(game: Game, rows: int, columns: int) -> Board:
 	var board: Board = Resources.board_scene.instantiate()
+	game.add_child(board)
+	board.game = game
 	board.rows = rows
 	board.columns = columns
 	return board

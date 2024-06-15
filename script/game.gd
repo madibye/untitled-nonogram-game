@@ -5,10 +5,12 @@ extends Control
 var current_scene
 
 func _ready():
-	change_scene(TitleScreen.new_title_screen())
+	change_scene(TitleScreen.new_title_screen(self))
 	
 func change_scene(scene):
-	if current_scene: remove_child(current_scene)
+	if current_scene: 
+		remove_child(current_scene)
+		current_scene.queue_free()
 	
 	for tween in get_tree().get_processed_tweens():
 		tween.kill()

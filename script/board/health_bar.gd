@@ -3,6 +3,7 @@ extends Control
 
 @export var max_hp: int = 5
 @export var hp: int = 5
+@onready var board: Board
 @onready var hpvfs: float
 @onready var hp_value: Sprite2D = $HealthBarHPValue
 
@@ -11,6 +12,7 @@ static func new_health_bar(board: Board, max_hp: int):
 	health_bar.max_hp = max_hp
 	health_bar.hp = max_hp
 	board.add_child(health_bar)
+	health_bar.board = board
 	return health_bar
 
 func _ready():
