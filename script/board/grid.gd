@@ -14,6 +14,7 @@ const RD = Enum.RowDirection
 @onready var max_cn: int
 @onready var rows: int
 @onready var board: Board
+@onready var auto_reveal_squares: Array[Square] = []
 
 var sq_filled: int = 0
 var curr_sq_filled: int = 0
@@ -96,6 +97,9 @@ func generate_row_numbers(row: int, row_dir: RD) -> Array:
 								 SS.BOTTOM_BLUE_LINES) + enum_offset)
 	for i in range(rn_squares.size()):
 		rn_squares[i].pos = set_axis_from_rd(i - rn_squares.size(), opp_row_dir(row_dir), rn_squares[i].pos)
+		if rn[i] == (sq_rows if row_dir == RD.ROW else sq_cols) or rn[i] == 0: 
+			for sq in get_squares_in_direction(row, row_dir):
+				auto_reveal_squares.append(sq)
 	return rn_squares
 	
 func find_square_from_pos(list, pos):

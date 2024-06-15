@@ -20,18 +20,19 @@ func _init():
 	
 func _ready():
 	Signals.finished.connect(func(): clickable = false)
+	if self in get_parent().auto_reveal_squares: self.reveal()
 
 func _on_gui_input(event: InputEvent):
 	if (not event is InputEventMouseButton) or (not event.pressed) or (not clickable) or (revealed): return
-	if event.button_index == 1: return reveal()
+	if event.button_index == 1: return reveal(true)
 	var mark = {2: SS.X_MARKED, 8: SS.O_MARKED, 9: SS.O_MARKED}.get(event.button_index, SS.NORMAL)
 	return toggle_mark(mark)
 		
-func reveal():
+func reveal(from_click: bool = false):
 	revealed = true
 	Signals.sq_revealed.emit(self)
 	if not is_filled:
-		Signals.damage_taken.emit(1)
+		if from_click: Signals.damage_taken.emit(1)
 		return set_sq_state(SS.REVEALED_X)
 	return set_sq_state(SS.REVEALED)
 	
