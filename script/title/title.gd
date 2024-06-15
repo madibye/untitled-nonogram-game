@@ -23,4 +23,5 @@ func _process(_delta):
 	splash_label.pivot_offset = splash_label.size / 2
 
 func _on_start_button_pressed():
-	game.change_scene(Board.new_board(game, row_sb.value, col_sb.value))
+	var board = Board.new_board(game, row_sb.value, col_sb.value, 5)
+	game.change_scene(board)

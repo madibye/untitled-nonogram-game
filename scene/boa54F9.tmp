@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://6op08w2o28vd"]
+
+[ext_resource type="Script" path="res://script/board/board.gd" id="1_8xjcm"]
+
+[node name="Board" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8xjcm")
+rows = 10
+columns = 10

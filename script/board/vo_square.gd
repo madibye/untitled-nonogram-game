@@ -5,10 +5,10 @@ const SS = Enum.SquareState
 var pos: Vector2
 var sq_state = SS.NORMAL
 
-static func new_vo_square(pos: Vector2, sq_state: SS = SS.BLANK, label_text: String = ""):
+static func new_vo_square(p: Vector2, ss: SS = SS.BLANK, label_text: String = ""):
 	var sq = Resources.vo_sq_scene.instantiate() as VOSquare
-	sq.set_sq_state(sq_state)
-	sq.pos = pos
+	sq.set_sq_state(ss)
+	sq.pos = p
 	sq.set_label_text(label_text)
 	return sq
 

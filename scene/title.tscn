@@ -99,9 +99,10 @@ offset_bottom = 158.415
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.39, 1.39)
-min_value = 5.0
+min_value = 1.0
 max_value = 50.0
 value = 10.0
+update_on_text_changed = true
 
 [node name="ColsLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -137,8 +138,9 @@ offset_bottom = 158.415
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.39, 1.39)
-min_value = 5.0
+min_value = 1.0
 max_value = 50.0
 value = 10.0
+update_on_text_changed = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

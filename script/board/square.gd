@@ -10,9 +10,9 @@ var is_filled = bool(randi() % 2)
 @onready var sq_state = SS.NORMAL
 var clickable = true
 
-static func new_square(pos: Vector2) -> Square:
+static func new_square(p: Vector2) -> Square:
 	var sq = Resources.sq_scene.instantiate() as Square
-	sq.pos = pos
+	sq.pos = p
 	return sq
 
 func _init():

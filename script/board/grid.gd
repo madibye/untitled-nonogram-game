@@ -18,11 +18,11 @@ const RD = Enum.RowDirection
 var sq_filled: int = 0
 var curr_sq_filled: int = 0
 	
-static func new_grid(board: Board, rows: int, columns: int):
+static func new_grid(b: Board, r: int, c: int):
 	var grid: Grid = Resources.grid_scene.instantiate()
-	board.add_child(grid)
-	grid.board = board
-	grid.populate_squares(rows, columns)
+	b.add_child(grid)
+	grid.board = b
+	grid.populate_squares(r, c)
 	return grid
 
 func _ready():
