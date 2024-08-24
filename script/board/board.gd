@@ -8,12 +8,12 @@ var prev_size: Vector2
 @onready var grid: Grid
 @onready var health_bar: HealthBar
 
-static func new_board(g: Game, r: int, c: int, hp: int) -> Board:
+static func new_board(g: Game, r: int, c: int, hp: int, goal: Array[bool] = []) -> Board:
 	var board: Board = Resources.board_scene.instantiate()
 	board.game = g
 	board.rows = r
 	board.columns = c
-	board.grid = Grid.new_grid(board, r, c)
+	board.grid = Grid.new_grid(board, r, c, goal)
 	board.health_bar = HealthBar.new_health_bar(board, hp)
 	return board
 

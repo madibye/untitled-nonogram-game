@@ -2,26 +2,17 @@
 
 [ext_resource type="Script" path="res://script/title/title.gd" id="1_vu8a0"]
 
-[node name="TitleScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_vu8a0")
 
 [node name="Title" type="RichTextLabel" parent="."]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -251.0
-offset_top = -300.0
+offset_top = 31.9523
 offset_right = -167.0
-offset_bottom = -244.0
+offset_bottom = 87.9523
 grow_horizontal = 2
 scale = Vector2(6, 6)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -30,16 +21,13 @@ bbcode_enabled = true
 text = "[center]untitled nonogram game[/center]"
 
 [node name="SplashText" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.58
-anchor_top = 0.275
-anchor_right = 0.58
-anchor_bottom = 0.275
-offset_left = 231.0
-offset_top = -257.0
-offset_right = 401.0
-offset_bottom = -209.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 217.0
+offset_top = 80.9523
+offset_right = 387.0
+offset_bottom = 128.952
 grow_horizontal = 2
 rotation = -0.270526
 scale = Vector2(1.635, 1.635)
@@ -48,17 +36,29 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "[center]now with funny splash screen text![/center]"
 
+[node name="ImportButton" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -71.0
+offset_right = 83.0
+offset_bottom = -40.0
+grow_vertical = 0
+scale = Vector2(1.67271, 1.67271)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Import"
+
 [node name="StartButton" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -79.5
-offset_top = 208.62
+offset_top = -127.605
 offset_right = -21.5
-offset_bottom = 239.62
+offset_bottom = -96.605
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2.75, 2.75)
@@ -66,16 +66,15 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "start!"
 
 [node name="RowsLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -232.5
-offset_top = 135.385
+offset_top = -200.84
 offset_right = -176.5
-offset_bottom = 161.385
+offset_bottom = -174.84
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2.32, 2.32)
@@ -86,16 +85,15 @@ bbcode_enabled = true
 text = "[center]rows[/center]"
 
 [node name="RowSpinBox" type="SpinBox" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -127.5
-offset_top = 127.415
+offset_top = -208.81
 offset_right = -44.4375
-offset_bottom = 158.415
+offset_bottom = -177.81
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.39, 1.39)
@@ -105,16 +103,15 @@ value = 10.0
 update_on_text_changed = true
 
 [node name="ColsLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 58.5
-offset_top = 135.385
+offset_top = -200.84
 offset_right = 138.5
-offset_bottom = 161.385
+offset_bottom = -174.84
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2.085, 2.085)
@@ -125,16 +122,15 @@ bbcode_enabled = true
 text = "[center]columns[/center]"
 
 [node name="ColSpinBox" type="SpinBox" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 182.5
-offset_top = 127.415
+offset_top = -208.81
 offset_right = 265.563
-offset_bottom = 158.415
+offset_bottom = -177.81
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.39, 1.39)
@@ -143,4 +139,15 @@ max_value = 50.0
 value = 10.0
 update_on_text_changed = true
 
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(370, 135)
+size = Vector2i(458, 365)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.non")
+
+[connection signal="pressed" from="ImportButton" to="." method="_on_import_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_import_file"]

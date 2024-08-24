@@ -14,15 +14,18 @@ const RD = Enum.RowDirection
 @onready var max_cn: int
 @onready var rows: int
 @onready var board: Board
+@onready var goal: Array[bool]
+@onready var valid_goal: bool
 @onready var auto_reveal_squares: Array[Square] = []
 
 var sq_filled: int = 0
 var curr_sq_filled: int = 0
 	
-static func new_grid(b: Board, r: int, c: int):
+static func new_grid(b: Board, r: int, c: int, g: Array[bool]):
 	var grid: Grid = Resources.grid_scene.instantiate()
 	b.add_child(grid)
 	grid.board = b
+	grid.goal = g
 	grid.populate_squares(r, c)
 	return grid
 
@@ -43,10 +46,12 @@ func _on_sq_revealed(sq: Square):
 	
 func populate_squares(r, c):
 	set_grid_size(r, c)
-	while squares.size() < (sq_rows*sq_cols):
-		squares.append(Square.new_square(
-			Vector2(squares.size() % sq_cols, floor(float(squares.size()) / float(sq_cols)))))
-		if squares[-1].is_filled: sq_filled += 1
+	while len(squares) < (sq_rows*sq_cols):
+		var sq = Square.new_square(Vector2(squares.size() % sq_cols, floor(float(squares.size()) / float(sq_cols))))
+		squares.append(sq)
+		if valid_goal:
+			sq.is_filled = goal[len(squares) - 1]
+		if sq.is_filled: sq_filled += 1
 	
 	row_numbers = range(sq_rows).map(generate_row_numbers.bind(RD.ROW))
 	col_numbers = range(sq_cols).map(generate_row_numbers.bind(RD.COLUMN))
@@ -64,6 +69,7 @@ func populate_squares(r, c):
 func set_grid_size(r, c) -> void:
 	sq_rows = r
 	sq_cols = c
+	valid_goal = len(goal) == r*c
 	set_columns(c)
 	
 func get_squares_in_direction(row, row_dir):
